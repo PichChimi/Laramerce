@@ -30,16 +30,16 @@
                     @else
                         @foreach($users as $user)
                          <tr>
-                            <td> {{ $user->id }} </td>
+                            <td> {{ $loop->index + 1 }} </td>
                             <td> {{ $user->role }} </td>
                             <td> {{ $user->name }} </td>
                             <td> {{ $user->email }} </td>
                             <td>
                                @if($user->profile)
                                    <!-- Button trigger modal -->
-                                 <a href="" data-toggle="modal" data-target="#exampleModal" class="h3"><i class="fa-solid fa-image"></i></a>
+                                 <a href="" data-toggle="modal" data-target="#exampleModal{{ $user->id }}" class="h3"><i class="fa-solid fa-image"></i></a>
                                   <!-- Modal -->
-                                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal fade" id="exampleModal{{ $user->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                       <div class="modal-content">
                                         

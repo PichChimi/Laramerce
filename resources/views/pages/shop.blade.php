@@ -26,8 +26,9 @@
 
             <div class="row product-lists">
             @foreach($categories as $category)
-            <div class="col-lg-4 col-md-6 text-center {{ $category->title }}">
+           
                 @foreach($category->product as $product)
+                <div class="col-lg-4 col-md-6 text-center {{ $category->title }}">
                     <div class="single-product-item">
                         <div class="product-image">
                             <a href="single-product.html"><img src="{{ asset($product->image_url) }}" alt=""></a>
@@ -39,14 +40,13 @@
                         </form>
                         <a href="#" onclick="document.getElementById('frmCart{{ $product->id }}').submit(); " class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                     </div>
+                </div>
                 @endforeach
-            </div>
+           
             @endforeach
-
-        
             </div>
 
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-lg-12 text-center">
                         <div class="pagination-wrap">
                             <ul>
@@ -58,7 +58,7 @@
                             </ul>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
         <!-- end products -->

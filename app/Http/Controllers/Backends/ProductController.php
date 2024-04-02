@@ -10,9 +10,17 @@ use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::get();
+        $search = $request->search;
+        $products = Product::where(function($query) use ($search){
+            $query->where('name', 'like', "%$search%")->orwhere('description', 'like', "%$search%");
+        })->orWhereHas('user', function($query) use ($search){
+            $query->where('name', 'like', "%$search%");
+        })->orWhereHas('category', function($query) use ($search){
+            $query->where('title', 'like', "%$search%");
+        })->paginate(5);
+       
         return view('backends.products.index ',[
             'products' => $products
         ]);

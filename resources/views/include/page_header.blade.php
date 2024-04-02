@@ -30,12 +30,17 @@
 								<li>
 								<div class="header-icons">
 								<a class="shopping-cart" href="{{ route('carts.index') }}"><i class="fas fa-shopping-cart"></i>
-									@if($qtyAdd > 0)
-										<sup>{{ $qtyAdd }}</sup>
+									@if($qtyadd > 0)
+										<sup>{{ $qtyadd }}</sup>
+									@else
+									<sup> 0</sup>
 									@endif
 							   </a>
 								@if(Auth::id())
-                                    <a href="{{ route('backends.dashboard') }}">{{ Auth::user()->name }}</a>
+
+						
+	                         <a href="{{ route('backends.dashboard') }}"><span class="user-profile"><img src="@if(Auth::id()) {{ asset(Auth::user()->profile) }} @endif" class="img-circle" alt="user avatar"></span></a>
+                                    {{-- <a href="{{ route('backends.dashboard') }}">{{ Auth::user()->name }}</a> --}}
 									<a href="#" onclick = "logoutUser()"><i class="fas fa-sign-out-alt"></i></i></a>
 									<form id="frmLogout" action="{{ route('logout') }}" method="POST">
                                        @csrf
@@ -47,7 +52,7 @@
 											}
 										}
 									</script>
-									
+									 
 								@else
 									<a class="" href="{{ route('login') }}"><i class="fas fa-user"></i></i></a>
 								@endif

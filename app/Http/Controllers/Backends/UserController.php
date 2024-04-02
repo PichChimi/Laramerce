@@ -31,6 +31,7 @@ class UserController extends Controller
         if($authUser->role == 'admin'){
             $datauser = User::get();
         }
+       
         return view('backends.users.index',[
         'users' => $datauser
         ]

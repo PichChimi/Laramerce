@@ -17,7 +17,7 @@
                 <select class="form-control" name="role" id="role">
                     <option selected disabled>---------- Choose Role ---------</option>
                     <option value="Buyer">Buyer</option>
-                    <option value="Admin">Admin</option>
+                    <option value="admin">admin</option>
                     <option value="Seller">Seller</option> <!-- Corrected spelling to 'Seller' -->
                 </select>
             </div>

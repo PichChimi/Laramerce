@@ -4,6 +4,7 @@
 <div class="row mt-3 ">
         <div class="col-lg-12">
           <div class="card">
+        
             <div class="card-body">
               <h5 class="card-title">Product</h5>
 			  <div class="table-responsive">
@@ -11,10 +12,11 @@
                   <thead>
                     <tr>
                       <th scope="col">#</th>
+                      <th scope="col">Owner</th>
                       <th scope="col">Category</th>
                       <th scope="col">Image</th>
                       <th scope="col">Name</th>
-                      <th scope="col">Quantity In Stock</th>
+                      {{-- <th scope="col">Quantity In Stock</th> --}}
                       <th scope="col">
                           <a href="{{ route('backends.products.create') }}" class="btn btn-light px-3">New Product</a>
                       </th>
@@ -30,6 +32,7 @@
                         @foreach($products as $product)
                          <tr>
                             <td> {{ $loop->index +1 }} </td>
+                            <td> {{ $product->user->name }} </td>
                             <td> {{ $product->category->title }} </td>
                             <td>
                             @if($product->image_url)
@@ -50,7 +53,7 @@
                                @endif
                             </td>
                             <td> {{ $product->name }} </td>
-                            <td> {{ $product->qty_in_stock }} </td>
+                            {{-- <td> {{ $product->qty_in_stock }} </td> --}}
                             <td>
                             <div class="btn-group" role="group" aria-label="Basic example">
                               
@@ -82,6 +85,10 @@
                    
                   </tbody>
                 </table>
+                <div class="mt-5 d-flex justify-content-end">
+                    {{ $products->onEachSide(3)->links() }}
+                </div>
+               
             </div>
             </div>
           </div>

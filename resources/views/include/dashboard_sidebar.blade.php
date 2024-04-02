@@ -27,11 +27,64 @@
         </a>
       </li>
 
+      
       <li>
         <a href="{{ route('users.index') }}">
           <i class="zmdi zmdi-format-list-bulleted"></i> <span>Users</span>
         </a>
       </li>
+
+      @can('menu_contact')
+      <li>
+        <a href="{{ route('backends.contact.index') }}">
+          <i class="zmdi zmdi-format-list-bulleted"></i> <span>Contact Us</span>
+        </a>
+      </li>
+    @endcan
+
+       @can('home_pages')
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="zmdi zmdi-chevron-down"></i> <span>Home Pages</span>
+          </a>
+          <ul class="dropdown-menu sidebar-new do-nicescrol">
+            <!-- Add additional dropdown items here -->
+            <li>
+              <a class="dropdown-item" href="{{ route('backends.advertisement.index') }}">
+                <i class="zmdi zmdi-format-list-bulleted"></i> <span>Advertisement</span>
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item" href="{{ route('backends.newinformation.index') }}">
+                <i class="zmdi zmdi-format-list-bulleted"></i> <span>New Information</span>
+              </a>
+            </li>
+           
+          
+        </li>
+      </ul>
+    @endcan
+
+       @can('about')
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="zmdi zmdi-chevron-down"></i> <span>About Pages</span>
+            </a>
+            <ul class="dropdown-menu sidebar-new do-nicescrol">
+              <!-- Add additional dropdown items here -->
+              <li>
+                <a class="dropdown-item" href="{{ route('backends.about.index') }}">
+                  <i class="zmdi zmdi-format-list-bulleted"></i> <span>Our Team</span>
+                </a>
+              </li>          
+          </li>
+        </ul>
+       @endcan
+        
+    
+     
+      
 
      
 

@@ -13,6 +13,7 @@ class CartController extends Controller
     public function index()
     {
         $carts = Cart::where('user_id', Auth::id())->orderBy('created_at', 'desc')->get();
+        $qtyadd = Cart::Where('user_id', Auth::id())->count();
         $subtotal = 0.00;
         $total = 0.00;
         
@@ -24,7 +25,8 @@ class CartController extends Controller
         return view('pages.carts.index', [
             'carts' => $carts,
             'subtotal' => $subtotal,
-            'total' => $total
+            'total' => $total,
+            'qtyadd' => $qtyadd
         ]);
     }
 
@@ -37,7 +39,8 @@ class CartController extends Controller
             'total' => $product->Total(1)
          ]);
 
-         return redirect(route('page.shop'));
+        //  return redirect(route('page.shop'));
+        return redirect()->back();
     }
 
     public function destory(Cart $cart)

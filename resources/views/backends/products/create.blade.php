@@ -9,6 +9,7 @@
            <hr>
             <form action="{{ route('backends.products.store') }}" method="post" enctype='multipart/form-data'>
               @csrf
+               <input type="hidden" class="form-control" value="{{ Auth::id() }}" name="user_id" id="name" >
               <div class="row">
                   <div class="col-lg-8">
                           <div class="form-group mt-2">

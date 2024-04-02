@@ -15,21 +15,28 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\PageController::class, 'index'])->middleware('minifier')->name('page.index');
 Route::get('/about', [App\Http\Controllers\PageController::class, 'about'])->name('page.about');
+Route::get('/payment-success', [App\Http\Controllers\PageController::class, 'paysuccess'])->name('page.paysuccess');
 Route::get('/contact', [App\Http\Controllers\PageController::class, 'contact'])->name('page.contact');
 Route::get('/shop', [App\Http\Controllers\PageController::class, 'shop'])->middleware('minifier')->name('page.shop');
 // Route::get('/cart', [App\Http\Controllers\PageController::class, 'cart'])->name('page.cart');
 Route::get('/checkout', [App\Http\Controllers\PageController::class, 'checkout'])->name('page.checkout');
+// Route::get('/newinformation/{newinformation}', [App\Http\Controllers\PageController::class, 'newinformation'])->name('pages.newinformation');
+Route::get('/newinformation/{newinformation}', [App\Http\Controllers\PageController::class, 'newinformation'])->name('pages.newinformation');
 
 // --- Cart -----
 Route::group([
     'middleware' => 'auth'
 ], function(){
     Route::get('/carts', [App\Http\Controllers\CartController::class, 'index'])->name('carts.index');
+   
     Route::post('/carts/{product}', [App\Http\Controllers\CartController::class, 'store'])->name('carts.store');
     Route::delete('/carts/{cart}', [App\Http\Controllers\CartController::class, 'destory'])->name('carts.destory');
     Route::put('/carts/{cart}', [App\Http\Controllers\CartController::class, 'updateQty'])->name('carts.updateQty');
 
     Route::post('/orders', [App\Http\Controllers\OrderController::class, 'store'])->name('orders.store');
+    Route::get('/orders/session', [App\Http\Controllers\OrderController::class, 'session'])->name('orders.session');
+    Route::get('/orders/success', [App\Http\Controllers\OrderController::class, 'success'])->name('success');
+    Route::get('/orders/cancel', [App\Http\Controllers\OrderController::class, 'cancel'])->name('cancel');
 });
 
 
@@ -69,5 +76,32 @@ Route::group([
    Route::resource('products', App\Http\Controllers\Backends\ProductController::class, [
     'as' => 'backends' 
    ]);
+
+   Route::resource('advertisement', App\Http\Controllers\Backends\AdvertisementController::class ,[
+    'as' => 'backends'
+   ]);
+
+   Route::group([
+     'prefix' => 'contact'
+   ], function(){
+       Route::get('/', [App\Http\Controllers\Backends\ContactController::class, 'index'])->name('backends.contact.index');
+       Route::post('/store', [App\Http\Controllers\Backends\ContactController::class, 'store'])->name('backends.contact.store');
+       Route::get('/contact/{contact}', [App\Http\Controllers\Backends\ContactController::class, 'show'])->name('backends.contact.show');
+       Route::delete('/{contact}', [App\Http\Controllers\Backends\ContactController::class, 'destroy'])->name('backends.contact.destroy');
+       
+   });
+
+   Route::resource('newinformation', App\Http\Controllers\Backends\NewInformationController::class, [
+    'as' => 'backends'
+   ]);
+
+   Route::resource('about', App\Http\Controllers\Backends\AboutController::class,[
+    'as' => 'backends'
+   ]);
+
+   
+  
+
+   
 });
 

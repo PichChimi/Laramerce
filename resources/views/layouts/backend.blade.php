@@ -28,8 +28,8 @@
      </a>
     </li>
     <li class="nav-item">
-      <form class="search-bar">
-        <input type="text" class="form-control" placeholder="Enter keywords">
+      <form class="search-bar" action="" method="GET">
+        <input type="text" class="form-control" name="search" placeholder="Enter keywords">
          <a href="javascript:void();"><i class="icon-magnifier"></i></a>
       </form>
     </li>
